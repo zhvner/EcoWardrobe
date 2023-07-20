@@ -48,15 +48,18 @@ to their collection as needed.
 - View Water Usage of Outfits: The app provides information on the amount of water required to produce each outfit, 
 empowering users to understand the environmental impact associated with their clothing choices.
 
+
+
 - View Plastic Production of Outfits: Users can access data on the amount of plastic produced by each outfit, 
 raising awareness about the plastic waste generated during the manufacturing process.
 
+![Alt text](/Users/janner/IdeaProjects1/project_h7w5o/src/main/Untitled.png)
 ### **Task 3**
 
 #### User stories :
-- As a user, I want to be able to _**add a clothing to my daily closet diary**_
-- As a user, I want to be able to _**view the list of clothes I wore for today**_
-- As a user, I want to be able to _**remove a clothing from my closet**_
-- As a user, I want to be able to _**edit outfits available**_
-- As a user, I want to be able to _**view the amount of water used produce my outfit **_
-- As a user, I want to be able to _**view the amount of plastic produced by my outfit **_
+[x] As a user, I want to be able to _**add a clothing to my daily closet diary**_
+[x]As a user, I want to be able to _**view the list of clothes I wore for today**_
+[x] As a user, I want to be able to _**remove a clothing from my closet**_
+[x] As a user, I want to be able to _**edit outfits available**_
+- As a user, I want to be able to _**view the amount of water used produce my outfit**_
+- As a user, I want to be able to _**view the amount of plastic produced by my outfit**_ 

@@ -32,7 +32,7 @@ public class OutfitDatabase {
     // MODIFIES: this
     // EFFECTS: if new clothing, stores in database
     //          if not new, nothing happens
-    public Boolean storeEntry(Clothing c) {
+    public boolean storeEntry(Clothing c) {
         if (!this.outfit.contains(c)) {
             this.outfit.add(c);
             return true;

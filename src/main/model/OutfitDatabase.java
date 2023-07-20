@@ -40,4 +40,13 @@ public class OutfitDatabase {
             return false;
         }
     }
+
+    public Clothing getOutfitByIndex(int i) {
+        return outfit.get(i);
+    }
+
+    // EFFECTS: returns true if database is empty, false otherwise
+    public boolean isDatabaseEmpty() {
+        return outfit.isEmpty();
+    }
 }

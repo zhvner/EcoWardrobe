@@ -14,11 +14,6 @@ public class ClothingTest {
     private Clothing clothingTest3;
     private Clothing clothingTest4;
     private Clothing clothingTest5;
-    private Clothing clothingTest6;
-    private Clothing clothingTest7;
-    private Clothing clothingTest8;
-    private Clothing clothingTest9;
-    private Clothing clothingTest10;
 
     @BeforeEach
     public void runBefore() {
@@ -42,6 +37,33 @@ public class ClothingTest {
         assertEquals(CAMBODIA, clothingTest2.getCountry());
         assertEquals(DENIM, clothingTest2.getMaterial());
     }
+
+    @Test
+    public void testSetCountry(){
+        clothingTest1.setCountry(PAKISTAN);
+        assertEquals(PAKISTAN, clothingTest1.getCountry());
+    }
+
+    @Test
+    public void testSetMaterial(){
+        clothingTest1.setMaterial(NYLON);
+        assertEquals(NYLON, clothingTest1.getMaterial());
+    }
+
+    @Test
+    public void testSetName(){
+        clothingTest1.setName("shirt");
+        assertEquals("shirt", clothingTest1.getName());
+    }
+
+    @Test
+    void testToString() {
+
+        String expected = "Clothing{name='top', country=BANGLADESH, material=COTTON}";
+        assertEquals(expected, clothingTest1.toString());
+    }
+
+
 
 
 

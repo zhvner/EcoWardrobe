@@ -15,6 +15,10 @@ public class OutfitDatabase {
         return outfit;
     }
 
+    public int getNumClothes() {
+        return this.outfit.size();
+    }
+
     // MODIFIES: this
     // EFFECTS:  Add a clothing to the OutfitDatabase
     public void addClothing(Clothing clothing) {

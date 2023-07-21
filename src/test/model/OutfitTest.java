@@ -63,6 +63,32 @@ public class OutfitTest {
         assertFalse(outfitDatabase.isDatabaseEmpty());
     }
 
+    @Test
+    public void testAddClothing(){
+        outfitDatabase.addClothing(c1);
+        outfitDatabase.addClothing(c2);
+        assertEquals(c1, outfitDatabase.getOutfitByIndex(0));
+        assertEquals(c2, outfitDatabase.getOutfitByIndex(1));
+        assertEquals(2, outfitDatabase.getNumClothes());
+    }
+
+    @Test
+    public void testRemoveClothing(){
+        outfitDatabase.addClothing(c1);
+        outfitDatabase.addClothing(c2);
+        assertEquals(c1, outfitDatabase.getOutfitByIndex(0));
+        assertEquals(c2, outfitDatabase.getOutfitByIndex(1));
+        assertEquals(2, outfitDatabase.getNumClothes());
+
+        outfitDatabase.removeClothing(0);
+        assertEquals(1, outfitDatabase.getNumClothes());
+        assertEquals(c2, outfitDatabase.getOutfitByIndex(0));
+
+
+
+    }
+
+
 
 
 }

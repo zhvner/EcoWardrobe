@@ -101,6 +101,7 @@ public class LogTest {
         assertEquals(0, outfitLogged.size());
 
     }
+
     @Test
     public void testGetFullDate() {
         String presentDate = today.getFullDate();

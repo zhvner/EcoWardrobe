@@ -57,9 +57,12 @@ raising awareness about the plastic waste generated during the manufacturing pro
 ### **Task 3**
 
 #### User stories :
-[x] As a user, I want to be able to _**add a clothing to my daily closet diary**_
-[x]As a user, I want to be able to _**view the list of clothes I wore for today**_
-[x] As a user, I want to be able to _**remove a clothing from my closet**_
-[x] As a user, I want to be able to _**edit outfits available**_
-- As a user, I want to be able to _**view the amount of water used produce my outfit**_
-- As a user, I want to be able to _**view the amount of plastic produced by my outfit**_ 
+-  As a user, I want to be able to _**add a clothing to my daily closet diary**_
+-  As a user, I want to be able to _**view the list of logged clothes I wore for today**_
+-  As a user, I want to be able to _**select a clothing from list by its index I wore for today**_
+-  As a user, I want to be able to _**remove a clothing from my closet**_
+-  As a user, I want to be able to _**add outfits from database**_
+
+-  As a user, I want to be able to _**view the amount of water footprint of my outfit**_
+-  As a user, I want to be able to _**view the highest climate impact outfit by export**_ 
+-  As a user, I want to be able to _**view the highest climate impact outfit by water footprint**_ 

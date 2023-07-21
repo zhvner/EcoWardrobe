@@ -2,18 +2,21 @@ package model;
 
 import java.util.Arrays;
 
+// Represents Clothing in my wardrobe with importing name, country and material used to make it.
 public class Clothing {
 
     private String name;
     private Country country; // exporting country -- impact rating
     private Material material; // material using chemicals -- display chemicals used
 
+    // EFFECTS: constructs clothing with name, exported/producing country and material
     public Clothing(String name, Country countries, Material materials) {
         this.name = name;
         this.country = countries;
         this.material = materials;
     }
 
+    //getters and setters
     public String getName() {
         return name;
     }
@@ -37,6 +40,7 @@ public class Clothing {
     public void setMaterial(Material materials) {
         this.material = materials;
     }
+
 
 
     @Override

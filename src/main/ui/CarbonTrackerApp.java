@@ -1,16 +1,18 @@
 package ui;
 
+import exceptions.DatabaseEmptyException;
 import model.*;
 
 import java.util.List;
 import java.util.Scanner;
 
+// Represents CarbonTrackerApp used to run console app.
 public class CarbonTrackerApp {
 
     private Log today;
     private List<Clothing> todayLogOutfit;
     private OutfitDatabase outfitDatabase;
-    private List<Clothing> selectOutfit; // select
+    private List<Clothing> selectOutfit;
     private Scanner input;
     private Material material;
     private Country producer;
@@ -53,37 +55,46 @@ public class CarbonTrackerApp {
         input = new Scanner(System.in);
     }
 
+
     // MODIFIES: this
-    // EFFECTS: processes user inputs in main menu
-    private void processCommand(String command) {
-        if (command.equals("new")) {
-            doNewClothing();
-        } else if (command.equals("add")) {
-            doAddClothingFromDatabase();
-        } else if (command.equals("del")) {
-            doDeleteClothing();
-        } else if (command.equals("c")) {
-            doViewRatingByCountry();
-        } else if (command.equals("log")) {
-            doViewClothingLog();
-        } else if (command.equals("view")) {
-            doViewClothingInDatabase();
-        } else {
-            System.out.println("Invalid Selection. Please try again.");
-        }
-    }
-
-
     // EFFECTS: displays main menu
     private void displayMenu() {
         System.out.println("\nWelcome to GreenFit! Please select:");
-        System.out.println("\tnew -> create new clothing from your wardrobe");
-        System.out.println("\tadd -> add clothing from your wardrobe");
-        System.out.println("\tdel -> delete a clothing entry");
-        System.out.println("\tc -> view rating per supplying country ");
-        System.out.println("\tlog -> view today's clothing log");
-        System.out.println("\tview -> view a clothing");
+        System.out.println("\tn -> create new clothing");
+        System.out.println("\ta -> add existing clothing from your wardrobe (database)");
+        System.out.println("\td -> delete a clothing entry");
+        //System.out.println("\tc -> view rating per supplying country ");
+        System.out.println("\tl -> view today's clothing log");
+        System.out.println("\tv -> view a clothing");
+        System.out.println("\tw -> view today's water footprint of your outfit");
+        System.out.println("\tx -> view the highest impact clothing in your outfit by export");
+        System.out.println("\tr -> view the highest impact clothing in your outfit by water footprint");
         System.out.println("\tquit -> quit");
+    }
+
+
+    // MODIFIES: this
+    // EFFECTS: processes user inputs in main menu
+    private void processCommand(String command) {
+        if (command.equals("n")) {
+            doNewClothing();
+        } else if (command.equals("a")) {
+            doAddClothingFromDatabase();
+        } else if (command.equals("d")) {
+            doDeleteClothing();
+        } else if (command.equals("l")) {
+            doViewClothingLog();
+        } else if (command.equals("v")) {
+            doViewClothingInDatabase();
+        } else if (command.equals("w")) {
+            doTotalWaterUsed();
+        } else if (command.equals("x")) {
+            doHighestClimateImpactByExport();
+        } else if (command.equals("r")) {
+            doHighestClimateImpactByWater();
+        } else {
+            System.out.println("Invalid Selection. Please try again.");
+        }
     }
 
 
@@ -103,7 +114,8 @@ public class CarbonTrackerApp {
         System.out.println(clothing.getName() + " has been created and added to your log!");
     }
 
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    // MODIFIES: this
+    // EFFECTS: gets a material from user's input selected from the provided list
     private Material getMaterial() {
         System.out.println("What's the material of your clothing?");
         System.out.println("\tp -> polyester");
@@ -113,11 +125,17 @@ public class CarbonTrackerApp {
         System.out.println("\tn -> nylon");
         System.out.println("\tw -> wool");
         System.out.println("\tt -> tweed");
-        System.out.println("\tsf -> synthetic fibre");
 
-        String type = input.next();
+        String chosenMaterial = input.next();
 
-        switch (type) {
+        return chooseMaterial(chosenMaterial);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: returns a material selected from the provided list
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    private Material chooseMaterial(String chosenMaterial) {
+        switch (chosenMaterial) {
             case "p":
                 material = Material.POLYESTER;
                 break;
@@ -136,11 +154,8 @@ public class CarbonTrackerApp {
             case "w":
                 material = Material.WOOL;
                 break;
-            case "t" :
+            case "t":
                 material = Material.TWEED;
-                break;
-            case "sf":
-                material = Material.SYNTHETIC_FIBRE;
                 break;
             default:
                 System.out.println("Selection is not valid...");
@@ -150,7 +165,8 @@ public class CarbonTrackerApp {
     }
 
 
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    // MODIFIES: this
+    // EFFECTS: gets a producer country from user's input selected from the provided
     public Country getProducer() {
         System.out.println("Which country produced  your clothing?");
         System.out.println("\tc -> China");
@@ -166,20 +182,27 @@ public class CarbonTrackerApp {
 
         String countryMade = input.next();
 
+        return chooseCountry(countryMade);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: returns a producing country from user's input selected from the displayed list
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    private Country chooseCountry(String countryMade) {
         switch (countryMade) {
-            case "c" :
+            case "c":
                 producer = Country.CHINA;
                 break;
-            case "v" :
+            case "v":
                 producer = Country.VIETNAM;
                 break;
-            case "b" :
+            case "b":
                 producer = Country.BANGLADESH;
                 break;
             case "i":
                 producer = Country.INDIA;
                 break;
-            case "t" :
+            case "t":
                 producer = Country.TURKEY;
                 break;
             case "p":
@@ -198,11 +221,11 @@ public class CarbonTrackerApp {
                 producer = Country.TAIPEI;
                 break;
         }
-        //initProducer();
         return producer;
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: adds a clothing from log
     private void doAddClothingFromDatabase() {
         System.out.println("Select a clothing to add from your wardrobe by typing its number:");
         Clothing clothing = selectClothingFromDB(selectOutfit);
@@ -210,6 +233,8 @@ public class CarbonTrackerApp {
         System.out.println(clothing.getName() + " has been added to your log!");
     }
 
+    // MODIFIES: this
+    // EFFECTS: selects a clothing from log
     private Clothing selectClothingFromDB(List<Clothing> selectOutfit) {
         for (Clothing clothing : selectOutfit) {
             System.out.println("For " + clothing.getName() + " press -> " + selectOutfit.indexOf(clothing));
@@ -227,11 +252,13 @@ public class CarbonTrackerApp {
         System.out.println(clothing.getName() + " has been removed from your log!");
     }
 
-    private void doViewRatingByCountry() {
-        Country producer = getProducer();
-        int rating = producer.getRating();
-        System.out.println(producer + " rating in terms of exporting fast fashion is " + rating + " ");
-    }
+//    // MODIFIES: this
+//    // EFFECTS: get an export rating for each country
+//    private void doViewRatingByCountry() {
+//        Country producer = getProducer();
+//        int rating = producer.getRating();
+//        System.out.println(producer + " rating in terms of exporting fast fashion is " + rating + " ");
+//    }
 
     // EFFECTS: displays today's outfit log
     private void doViewClothingLog() {
@@ -270,6 +297,32 @@ public class CarbonTrackerApp {
         printClothingInfo(c);
     }
 
+    // REQUIRES: outfit database must not be empty
+    // MODIFIES: this
+    // EFFECTS: displays the clothing that has the highest rating in exporting
+    private void doHighestClimateImpactByExport() {
+        Clothing highestImpactClothing = today.getOutfitDB().computeHighestImpactExport();
+        System.out.println("Your " + highestImpactClothing.getName() + " has the highest impact "
+                + "on climate in terms of exporting clothes");
+    }
+
+    // REQUIRES: outfit database must not be empty
+    // MODIFIES: this
+    // EFFECTS: displays the clothing that has the highest rating in exporting
+    private void doHighestClimateImpactByWater() {
+        Clothing highestImpactClothing = today.getOutfitDB().computeHighestWaterFootprint();
+        System.out.println("Your " + highestImpactClothing.getName() + " has the highest impact "
+                + "on climate in terms of water footprint");
+    }
+
+
+    // REQUIRES: outfit database must not be empty
+    // MODIFIES: this
+    // EFFECTS: displays the total water used for today's log
+    private void doTotalWaterUsed() {
+        double waterFootprint = today.getTotalWaterFootprint();
+        System.out.println("The total water footprint of today's outfit is " + waterFootprint + " liters");
+    }
 
 }
 

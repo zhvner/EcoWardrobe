@@ -12,16 +12,12 @@ public class ClothingTest {
     private Clothing clothingTest1;
     private Clothing clothingTest2;
     private Clothing clothingTest3;
-    private Clothing clothingTest4;
-    private Clothing clothingTest5;
 
     @BeforeEach
     public void runBefore() {
         clothingTest1 = new Clothing("top", BANGLADESH, COTTON);
         clothingTest2 = new Clothing("skirt", CAMBODIA, DENIM);
         clothingTest3 = new Clothing("jacket", PAKISTAN, POLYESTER);
-        clothingTest4 = new Clothing("blazer", CHINA, SYNTHETIC_FIBRE);
-        clothingTest5 = new Clothing("pants", TURKEY, NYLON);
     }
 
     @Test

@@ -74,7 +74,6 @@ public class CarbonTrackerApp {
     }
 
 
-
     // EFFECTS: displays main menu
     private void displayMenu() {
         System.out.println("\nWelcome to GreenFit! Please select:");
@@ -104,6 +103,7 @@ public class CarbonTrackerApp {
         System.out.println(clothing.getName() + " has been created and added to your log!");
     }
 
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private Material getMaterial() {
         System.out.println("What's the material of your clothing?");
         System.out.println("\tp -> polyester");
@@ -118,15 +118,33 @@ public class CarbonTrackerApp {
         String type = input.next();
 
         switch (type) {
-            case "p" -> material = Material.POLYESTER;
-            case "d" -> material = Material.DENIM;
-            case "s" -> material = Material.SILK;
-            case "c" -> material = Material.COTTON;
-            case "n" -> material = Material.NYLON;
-            case "w" -> material = Material.WOOL;
-            case "t" -> material = Material.TWEED;
-            case "sf" -> material = Material.SYNTHETIC_FIBRE;
-            default -> System.out.println("Selection is not valid...");
+            case "p":
+                material = Material.POLYESTER;
+                break;
+            case "d":
+                material = Material.DENIM;
+                break;
+            case "s":
+                material = Material.SILK;
+                break;
+            case "c":
+                material = Material.COTTON;
+                break;
+            case "n":
+                material = Material.NYLON;
+                break;
+            case "w":
+                material = Material.WOOL;
+                break;
+            case "t" :
+                material = Material.TWEED;
+                break;
+            case "sf":
+                material = Material.SYNTHETIC_FIBRE;
+                break;
+            default:
+                System.out.println("Selection is not valid...");
+                break;
         }
         return material;
     }
@@ -149,22 +167,40 @@ public class CarbonTrackerApp {
         String countryMade = input.next();
 
         switch (countryMade) {
-            case "c" -> producer = Country.CHINA;
-            case "v" -> producer = Country.VIETNAM;
-            case "b" -> producer = Country.BANGLADESH;
-            case "i" -> producer = Country.INDIA;
-            case "t" -> producer = Country.TURKEY;
-            case "p" -> producer = Country.PAKISTAN;
-            case "cd" -> producer = Country.CAMBODIA;
-            case "id" -> producer = Country.INDONESIA;
-            case "k" -> producer = Country.SOUTH_KOREA;
-            case "tp" -> producer = Country.TAIPEI;
+            case "c" :
+                producer = Country.CHINA;
+                break;
+            case "v" :
+                producer = Country.VIETNAM;
+                break;
+            case "b" :
+                producer = Country.BANGLADESH;
+                break;
+            case "i":
+                producer = Country.INDIA;
+                break;
+            case "t" :
+                producer = Country.TURKEY;
+                break;
+            case "p":
+                producer = Country.PAKISTAN;
+                break;
+            case "cd":
+                producer = Country.CAMBODIA;
+                break;
+            case "id":
+                producer = Country.INDONESIA;
+                break;
+            case "k":
+                producer = Country.SOUTH_KOREA;
+                break;
+            case "tp":
+                producer = Country.TAIPEI;
+                break;
         }
         //initProducer();
         return producer;
     }
-
-
 
 
     private void doAddClothingFromDatabase() {

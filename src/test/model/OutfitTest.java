@@ -140,6 +140,25 @@ public class OutfitTest {
     }
 
     @Test
+    public void testMultipleHighestImpactLastExportNotThrown() {
+        outfitDatabase.addClothing(c2);
+        outfitDatabase.addClothing(c1);
+
+        assertEquals(7, c2.getCountry().getRating());
+        assertEquals(3, c1.getCountry().getRating());
+
+
+        Clothing highestImpactExport = null;
+        try {
+            highestImpactExport = outfitDatabase.computeHighestImpactExport();
+            assertEquals(c1, highestImpactExport);
+        } catch (DatabaseEmptyException e) {
+            fail();
+        }
+
+    }
+
+    @Test
     public void testComputeHighestWaterFootprintThrown() {
         assertTrue(outfitDatabase.isDatabaseEmpty());
         try {

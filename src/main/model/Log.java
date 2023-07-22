@@ -53,19 +53,19 @@ public class Log {
         }
     }
 
-//     MODIFIES: this
-//     EFFECTS: if clothing index is in range, removes meal and deducts water used per material, returns true
-//              returns false if index not range
-    public Boolean removeClothingFromLog(int index) {
-        if (!(index >= todayOutfit.size())) {
-            double water = todayOutfit.get(index).getMaterial().getWaterFootprint();
-            this.todayOutfit.remove(index);
-            totalWaterFootprint -= water;
-            return true;
-        } else {
-            return false;
-        }
-    }
+////     MODIFIES: this
+////     EFFECTS: if clothing index is in range, removes meal and deducts water used per material, returns true
+////              returns false if index not range
+//    public Boolean removeClothingFromLog(int index) {
+//        if (!(index >= todayOutfit.size())) {
+//            double water = todayOutfit.get(index).getMaterial().getWaterFootprint();
+//            this.todayOutfit.remove(index);
+//            totalWaterFootprint -= water;
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     //getters
     public String getFullDate() {

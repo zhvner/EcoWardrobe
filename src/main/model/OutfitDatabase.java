@@ -64,9 +64,13 @@ public class OutfitDatabase {
     // EFFECTS: returns the highest climate impact clothing in wardrobe,
     //          based on fast fashion exporting country's rating
     //          (in case of tie, returns the first of the tied sources)
-    public Clothing computeHighestImpactExport() {
+    public Clothing computeHighestImpactExport() throws DatabaseEmptyException {
+
+        if (isDatabaseEmpty()) {
+            throw new DatabaseEmptyException();
+        }
         int highestIndex = 0;
-        for (int i = 0; i <= this.getNumClothes(); i++) {
+        for (int i = 0; i < this.getNumClothes(); i++) {
             int rating = getOutfitByIndex(i).getCountry().getRating();
             int highestRating = getOutfitByIndex(highestIndex).getCountry().getRating();
             if (rating < highestRating) {
@@ -81,7 +85,11 @@ public class OutfitDatabase {
     // EFFECTS: returns the highest total climate impact clothing in wardrobe,
     //          based on water footprint
     //          (in case of tie, returns the first of the tied sources)
-    public Clothing computeHighestWaterFootprint() {
+    public Clothing computeHighestWaterFootprint() throws DatabaseEmptyException {
+
+        if (isDatabaseEmpty()) {
+            throw new DatabaseEmptyException();
+        }
         int highestIndex = 0;
         for (int i = 0; i < this.getNumClothes(); i++) {
             double water = getOutfitByIndex(i).getMaterial().getWaterFootprint();

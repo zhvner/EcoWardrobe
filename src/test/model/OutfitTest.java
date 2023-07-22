@@ -1,14 +1,13 @@
 package model;
 
+import exceptions.DatabaseEmptyException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static model.Country.BANGLADESH;
-import static model.Country.CAMBODIA;
-import static model.Material.COTTON;
-import static model.Material.DENIM;
+import static model.Country.*;
+import static model.Material.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,6 +17,7 @@ public class OutfitTest {
     OutfitDatabase outfitDatabase;
     Clothing c1;
     Clothing c2;
+    Clothing c3;
 
     @BeforeEach
     public void runBefore() {
@@ -25,6 +25,7 @@ public class OutfitTest {
         outfitDatabase = today.getOutfitDB();
         c1 = new Clothing("top", BANGLADESH, COTTON);
         c2 = new Clothing("skirt", CAMBODIA, DENIM);
+        c3= new Clothing("jacket", PAKISTAN, TWEED);
     }
 
     @Test
@@ -87,6 +88,38 @@ public class OutfitTest {
 
 
     }
+
+    @Test
+    public void testHighestImpactExport() {
+        outfitDatabase.addClothing(c1);
+        outfitDatabase.addClothing(c2);
+        assertEquals(2, outfitDatabase.getOutfit().size());
+
+        Clothing highestImpactExport = null;
+        try {
+            highestImpactExport = outfitDatabase.computeHighestImpactExport();
+        } catch (DatabaseEmptyException e) {
+            fail();
+        }
+        assertEquals(c1, highestImpactExport);
+    }
+
+    @Test
+    public void testComputeHighestWaterFootprint() {
+        outfitDatabase.addClothing(c1);
+        outfitDatabase.addClothing(c2);
+        outfitDatabase.addClothing(c3);
+
+        Clothing highestImpactByWater = null;
+        try {
+            highestImpactByWater = outfitDatabase.computeHighestWaterFootprint();
+        } catch (DatabaseEmptyException e) {
+            fail();
+        }
+        assertEquals(c3, highestImpactByWater);
+    }
+
+
 
 
 

@@ -301,18 +301,32 @@ public class CarbonTrackerApp {
     // MODIFIES: this
     // EFFECTS: displays the clothing that has the highest rating in exporting
     private void doHighestClimateImpactByExport() {
-        Clothing highestImpactClothing = today.getOutfitDB().computeHighestImpactExport();
-        System.out.println("Your " + highestImpactClothing.getName() + " has the highest impact "
-                + "on climate in terms of exporting clothes");
+        Clothing highestImpactClothing = null;
+        try {
+            highestImpactClothing = today.getOutfitDB().computeHighestImpactExport();
+            System.out.println("Your " + highestImpactClothing.getName() + " has the highest impact "
+                    + "on climate in terms of exporting clothes");
+        } catch (DatabaseEmptyException e) {
+            System.out.println("Outfit database is empty. "
+                    + "Please create new clothes or add from wardrobe");
+        }
+
     }
 
     // REQUIRES: outfit database must not be empty
     // MODIFIES: this
     // EFFECTS: displays the clothing that has the highest rating in exporting
     private void doHighestClimateImpactByWater() {
-        Clothing highestImpactClothing = today.getOutfitDB().computeHighestWaterFootprint();
-        System.out.println("Your " + highestImpactClothing.getName() + " has the highest impact "
-                + "on climate in terms of water footprint");
+        Clothing highestImpactClothing = null;
+        try {
+            highestImpactClothing = today.getOutfitDB().computeHighestWaterFootprint();
+            System.out.println("Your " + highestImpactClothing.getName() + " has the highest impact "
+                    + "on climate in terms of water footprint");
+        } catch (DatabaseEmptyException e) {
+            System.out.println("Outfit database is empty. "
+                    + "Please create new clothes or add from wardrobe");
+        }
+
     }
 
 

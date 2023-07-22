@@ -35,6 +35,8 @@ public class LogTest {
     public void testAddClothingToLogOneClothing() {
         today.addClothingToLog(c1);
         assertEquals(1, outfitLogged.size());
+
+        assertEquals(6600, today.getTotalWaterFootprint());
     }
 
     @Test
@@ -43,6 +45,7 @@ public class LogTest {
         today.addClothingToLog(c2);
 
         assertEquals(2, outfitLogged.size());
+        assertEquals(9930, today.getTotalWaterFootprint());
     }
 
     @Test
@@ -51,6 +54,7 @@ public class LogTest {
         today.addClothingToLog(c1);
 
         assertEquals(2, outfitLogged.size());
+        assertEquals(13200, today.getTotalWaterFootprint());
     }
 
     @Test
@@ -60,12 +64,14 @@ public class LogTest {
         today.addClothingToLog(c1);
 
         assertEquals(3, outfitLogged.size());
+        assertEquals(16530, today.getTotalWaterFootprint());
     }
 
     @Test
     public void testRemoveClothingFromLogEmpty() {
         assertEquals(0, outfitLogged.size());
         assertFalse(today.removeClothingFromLog(c1));
+        assertEquals(0, today.getTotalWaterFootprint());
     }
 
     @Test
@@ -73,6 +79,7 @@ public class LogTest {
         today.addClothingToLog(c1);
         assertTrue(today.removeClothingFromLog(c1));
         assertEquals(0, outfitLogged.size());
+        assertEquals(0, today.getTotalWaterFootprint());
     }
 
     @Test
@@ -80,9 +87,11 @@ public class LogTest {
         today.addClothingToLog(c1);
         today.addClothingToLog(c2);
         assertEquals(2, outfitLogged.size());
+        assertEquals(9930, today.getTotalWaterFootprint());
 
         assertTrue(today.removeClothingFromLog(c1));
         assertEquals(1, outfitLogged.size());
+        assertEquals(3330, today.getTotalWaterFootprint());
 
         assertTrue(today.removeClothingFromLog(c2));
         assertEquals(0, outfitLogged.size());
@@ -93,12 +102,15 @@ public class LogTest {
         today.addClothingToLog(c1);
         today.addClothingToLog(c1);
         assertEquals(2, outfitLogged.size());
+        assertEquals(13200, today.getTotalWaterFootprint());
 
         assertTrue(today.removeClothingFromLog(c1));
         assertEquals(1, outfitLogged.size());
+        assertEquals(6600, today.getTotalWaterFootprint());
 
         assertTrue(today.removeClothingFromLog(c1));
         assertEquals(0, outfitLogged.size());
+        assertEquals(0, today.getTotalWaterFootprint());
 
     }
 

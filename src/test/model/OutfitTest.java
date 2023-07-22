@@ -64,6 +64,8 @@ public class OutfitTest {
         assertFalse(outfitDatabase.isDatabaseEmpty());
     }
 
+
+
     @Test
     public void testAddClothing(){
         outfitDatabase.addClothing(c1);
@@ -103,13 +105,26 @@ public class OutfitTest {
 
     }
 
+    @Test
+    public void testOneHighestImpactExportNotThrown() {
+        outfitDatabase.addClothing(c2);
+        assertEquals(1, outfitDatabase.getOutfit().size());
+
+        Clothing highestImpactExport = null;
+        try {
+            highestImpactExport = outfitDatabase.computeHighestImpactExport();
+        } catch (DatabaseEmptyException e) {
+            fail();
+        }
+        assertEquals(c2, highestImpactExport);
+    }
+
 
     @Test
-    public void testHighestImpactExportNotThrown() {
+    public void testMultipleHighestImpactExportNotThrown() {
         outfitDatabase.addClothing(c1);
         outfitDatabase.addClothing(c2);
-        assertEquals(2, outfitDatabase.getOutfit().size());
-
+        outfitDatabase.addClothing(c3);
         Clothing highestImpactExport = null;
         try {
             highestImpactExport = outfitDatabase.computeHighestImpactExport();
@@ -122,19 +137,29 @@ public class OutfitTest {
     @Test
     public void testComputeHighestWaterFootprintThrown() {
         assertTrue(outfitDatabase.isDatabaseEmpty());
-
-
         try {
             outfitDatabase.computeHighestWaterFootprint();
             fail();
         } catch (DatabaseEmptyException e) {
-
         }
 
     }
 
     @Test
-    public void testComputeHighestWaterFootprintNotThrown() {
+    public void testOneComputeHighestWaterFootprintNotThrown() {
+        outfitDatabase.addClothing(c1);
+
+        Clothing highestImpactByWater = null;
+        try {
+            highestImpactByWater = outfitDatabase.computeHighestWaterFootprint();
+        } catch (DatabaseEmptyException e) {
+            fail();
+        }
+        assertEquals(c1, highestImpactByWater);
+    }
+
+    @Test
+    public void testMultipleComputeHighestWaterFootprintNotThrown() {
         outfitDatabase.addClothing(c1);
         outfitDatabase.addClothing(c2);
         outfitDatabase.addClothing(c3);
@@ -147,10 +172,5 @@ public class OutfitTest {
         }
         assertEquals(c3, highestImpactByWater);
     }
-
-
-
-
-
 
 }

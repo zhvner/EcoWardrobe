@@ -46,7 +46,7 @@ public class Log {
     public boolean removeClothingFromLog(Clothing c) {
         if (todayOutfit.contains(c)) {
             this.todayOutfit.remove(c);
-            totalWaterFootprint += c.getMaterial().getWaterFootprint();
+            totalWaterFootprint -= c.getMaterial().getWaterFootprint();
             return true;
         } else {
             return false;

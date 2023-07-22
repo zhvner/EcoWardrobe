@@ -90,7 +90,22 @@ public class OutfitTest {
     }
 
     @Test
-    public void testHighestImpactExport() {
+    public void testHighestImpactExportThrown() {
+        assertTrue(outfitDatabase.isDatabaseEmpty());
+        assertEquals(0, outfitDatabase.getOutfit().size());
+
+        try {
+            outfitDatabase.computeHighestImpactExport();
+            fail("Database Empty Exception is not thrown");
+        } catch (DatabaseEmptyException e) {
+            // success
+        }
+
+    }
+
+
+    @Test
+    public void testHighestImpactExportNotThrown() {
         outfitDatabase.addClothing(c1);
         outfitDatabase.addClothing(c2);
         assertEquals(2, outfitDatabase.getOutfit().size());
@@ -105,7 +120,21 @@ public class OutfitTest {
     }
 
     @Test
-    public void testComputeHighestWaterFootprint() {
+    public void testComputeHighestWaterFootprintThrown() {
+        assertTrue(outfitDatabase.isDatabaseEmpty());
+
+
+        try {
+            outfitDatabase.computeHighestWaterFootprint();
+            fail();
+        } catch (DatabaseEmptyException e) {
+
+        }
+
+    }
+
+    @Test
+    public void testComputeHighestWaterFootprintNotThrown() {
         outfitDatabase.addClothing(c1);
         outfitDatabase.addClothing(c2);
         outfitDatabase.addClothing(c3);

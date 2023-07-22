@@ -66,3 +66,6 @@ raising awareness about the plastic waste generated during the manufacturing pro
 -  As a user, I want to be able to _**view the amount of water footprint of my outfit**_
 -  As a user, I want to be able to _**view the highest climate impact outfit by export**_ 
 -  As a user, I want to be able to _**view the highest climate impact outfit by water footprint**_ 
+
+-  As a user, I want to be able to _**save my daily clothing log entries to file**_
+-  As a user, I want to be able to _**load my daily clothing log entries from file**_

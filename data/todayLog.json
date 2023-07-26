@@ -1,26 +1,26 @@
 {
     "Wardrobe clothes": [
         {
-            "country": "TURKEY",
-            "material": "SILK",
-            "name": "skirt"
+            "country": "BANGLADESH",
+            "material": "POLYESTER",
+            "name": "top"
         },
         {
-            "country": "INDIA",
-            "material": "POLYESTER",
+            "country": "SOUTH_KOREA",
+            "material": "WOOL",
             "name": "tshirt"
         }
     ],
-    "Today's date": "TUESDAY JULY 25",
+    "Today's date": "WEDNESDAY JULY 26",
     "Today's outfit": [
         {
-            "country": "TURKEY",
-            "material": "SILK",
-            "name": "skirt"
+            "country": "BANGLADESH",
+            "material": "POLYESTER",
+            "name": "top"
         },
         {
-            "country": "INDIA",
-            "material": "POLYESTER",
+            "country": "SOUTH_KOREA",
+            "material": "WOOL",
             "name": "tshirt"
         }
     ]

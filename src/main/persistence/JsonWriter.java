@@ -1,7 +1,7 @@
 package persistence;
 
 import model.Log;
-import org.json.JSONObject;
+import org.json.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -122,7 +122,4 @@ public class Log implements Writable {
         return todayOutfit.isEmpty();
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 }

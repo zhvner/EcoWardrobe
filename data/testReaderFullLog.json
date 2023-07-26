@@ -1,0 +1,37 @@
+{
+  "Today's date": "SUNDAY JULY 23",
+  "Today's outfit": [
+    {
+      "name": "top",
+      "country": "SOUTH_KOREA",
+      "material": "NYLON"
+    },
+    {
+      "name": "trousers",
+      "country": "VIETNAM",
+      "material": "WOOL"
+    },
+    {
+      "name": "leggings",
+      "country": "CHINA",
+      "material": "POLYESTER"
+    }
+
+  ],
+  "Wardrobe clothes": [
+    {
+      "name": "dress",
+      "country": "TAIPEI",
+      "material": "SILK"
+    },
+    {
+      "name": "skirt",
+      "country": "BANGLADESH",
+      "material": "COTTON"
+    }
+
+
+  ],
+
+  "name": "Outfit for today"
+}

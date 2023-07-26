@@ -1,0 +1,37 @@
+{
+    "Wardrobe clothes": [
+        {
+            "country": "BANGLADESH",
+            "material": "COTTON",
+            "name": "skirt"
+        },
+        {
+            "country": "CHINA",
+            "material": "DENIM",
+            "name": "trainers"
+        },
+        {
+            "country": "PAKISTAN",
+            "material": "TWEED",
+            "name": "tshirt"
+        }
+    ],
+    "Today's date": "WEDNESDAY JULY 26",
+    "Today's outfit": [
+        {
+            "country": "BANGLADESH",
+            "material": "COTTON",
+            "name": "skirt"
+        },
+        {
+            "country": "CHINA",
+            "material": "DENIM",
+            "name": "trainers"
+        },
+        {
+            "country": "PAKISTAN",
+            "material": "TWEED",
+            "name": "tshirt"
+        }
+    ]
+}

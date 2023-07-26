@@ -1,0 +1,27 @@
+{
+    "Wardrobe clothes": [
+        {
+            "country": "TURKEY",
+            "material": "SILK",
+            "name": "skirt"
+        },
+        {
+            "country": "INDIA",
+            "material": "POLYESTER",
+            "name": "tshirt"
+        }
+    ],
+    "Today's date": "TUESDAY JULY 25",
+    "Today's outfit": [
+        {
+            "country": "TURKEY",
+            "material": "SILK",
+            "name": "skirt"
+        },
+        {
+            "country": "INDIA",
+            "material": "POLYESTER",
+            "name": "tshirt"
+        }
+    ]
+}

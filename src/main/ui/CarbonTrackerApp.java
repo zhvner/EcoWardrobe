@@ -1,14 +1,20 @@
 package ui;
 
 import exceptions.DatabaseEmptyException;
+import exceptions.InvalidInputException;
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 // Represents CarbonTrackerApp used to run console app.
 public class CarbonTrackerApp {
 
+    private static final String JSON_STORE = "./data/todayLog.json";
     private Log today;
     private List<Clothing> todayLogOutfit;
     private OutfitDatabase outfitDatabase;
@@ -16,11 +22,21 @@ public class CarbonTrackerApp {
     private Scanner input;
     private Material material;
     private Country producer;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
-    /*
-     * EFFECTS: begins the ui console
-     */
+    // EFFECTS: begins the ui console
     public CarbonTrackerApp() {
+        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
+
+        today = new Log();
+        todayLogOutfit = today.getTodayOutfit();
+        outfitDatabase = today.getOutfitDB();
+        selectOutfit = outfitDatabase.getOutfit();
+
+        input = new Scanner(System.in);
+
         runApp();
     }
 
@@ -35,7 +51,7 @@ public class CarbonTrackerApp {
             command = input.next();
             command = command.toLowerCase();
 
-            if (command.equals("quit")) {
+            if (command.equals("q")) {
                 appRunning = false;
             } else {
                 processCommand(command);
@@ -59,17 +75,16 @@ public class CarbonTrackerApp {
     // MODIFIES: this
     // EFFECTS: displays main menu
     private void displayMenu() {
-        System.out.println("\nWelcome to GreenFit! Please select:");
-        System.out.println("\tn -> create new clothing");
-        System.out.println("\ta -> add existing clothing from your wardrobe (database)");
-        System.out.println("\td -> delete a clothing entry");
-        //System.out.println("\tc -> view rating per supplying country ");
-        System.out.println("\tl -> view today's clothing log");
-        System.out.println("\tv -> view a clothing");
-        System.out.println("\tw -> view today's water footprint of your outfit");
-        System.out.println("\tx -> view the highest impact clothing in your outfit by export");
-        System.out.println("\tr -> view the highest impact clothing in your outfit by water footprint");
-        System.out.println("\tquit -> quit");
+        System.out.println(""
+                + "\u001B[7ml \u001B[0m Load File                      \u001B[7ms \u001B[0m Save File      "
+                + "                   \u001B[7mq \u001B[0m Quit");
+        System.out.println(""
+                + "\u001B[7mv \u001B[0m View Outfit Log                \u001B[7mn \u001B[0m New Cloting    "
+                +                "                   \u001B[7ma \u001B[0m Add from Wardrobe"
+                + "                 \u001B[7md\u001B[0m Delete Clothing ");
+        System.out.println(""
+                + "\u001B[7mx \u001B[0m High export impact clothing    \u001B[7mwf\u001B[0m High water footprint"
+                + "              \u001B[7mw \u001B[0m View Total Water used per outfit");
     }
 
 
@@ -82,20 +97,23 @@ public class CarbonTrackerApp {
             doAddClothingFromDatabase();
         } else if (command.equals("d")) {
             doDeleteClothing();
-        } else if (command.equals("l")) {
-            doViewClothingLog();
         } else if (command.equals("v")) {
-            doViewClothingInDatabase();
+            doViewClothingLog();
         } else if (command.equals("w")) {
             doTotalWaterUsed();
         } else if (command.equals("x")) {
             doHighestClimateImpactByExport();
-        } else if (command.equals("r")) {
+        } else if (command.equals("wf")) {
             doHighestClimateImpactByWater();
+        } else if (command.equals("l")) {
+            doLoadTodayLog();
+        } else if (command.equals("s")) {
+            doSaveTodayLog();
         } else {
             System.out.println("Invalid Selection. Please try again.");
         }
     }
+
 
 
     // MODIFIES: this
@@ -246,19 +264,11 @@ public class CarbonTrackerApp {
     // MODIFIES: this
     // EFFECTS: remove a clothing from log
     private void doDeleteClothing() {
-        System.out.println("Select a meal to remove by typing its number:");
+        System.out.println("Select a clothing to remove by typing its number:");
         Clothing clothing = selectClothingFromDB(todayLogOutfit);
         today.removeClothingFromLog(clothing);
         System.out.println(clothing.getName() + " has been removed from your log!");
     }
-
-//    // MODIFIES: this
-//    // EFFECTS: get an export rating for each country
-//    private void doViewRatingByCountry() {
-//        Country producer = getProducer();
-//        int rating = producer.getRating();
-//        System.out.println(producer + " rating in terms of exporting fast fashion is " + rating + " ");
-//    }
 
     // EFFECTS: displays today's outfit log
     private void doViewClothingLog() {
@@ -288,14 +298,6 @@ public class CarbonTrackerApp {
         System.out.println("Material: " + material);
     }
 
-    // REQUIRES: outfit database must not be empty
-    // EFFECTS: searches database and displays a user selected clothing's information
-    private void doViewClothingInDatabase() {
-        System.out.println("Select a clothing from the database:");
-        Clothing c = selectClothingFromDB(selectOutfit);
-        System.out.println("Outfit Details:");
-        printClothingInfo(c);
-    }
 
     // REQUIRES: outfit database must not be empty
     // MODIFIES: this
@@ -329,13 +331,41 @@ public class CarbonTrackerApp {
 
     }
 
-
     // REQUIRES: outfit database must not be empty
     // MODIFIES: this
     // EFFECTS: displays the total water used for today's log
     private void doTotalWaterUsed() {
         double waterFootprint = today.getTotalWaterFootprint();
         System.out.println("The total water footprint of today's outfit is " + waterFootprint + " liters");
+    }
+
+    // CITATION: this method has been modeled from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+    // EFFECTS: saves the current log to file
+    private void doSaveTodayLog() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(today);
+            jsonWriter.close();
+            System.out.println("Saved for today's date of" + today.getFullDate() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // CITATION: this method has been modeled from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+    // EFFECTS: loads the current log to file
+    private void doLoadTodayLog() {
+        try {
+            today = jsonReader.read();
+            todayLogOutfit = today.getTodayOutfit();
+            outfitDatabase = today.getOutfitDB();
+            selectOutfit = outfitDatabase.getOutfit();
+
+            System.out.println("Log successfully loaded from file!");
+
+        } catch (IOException | InvalidInputException e) {
+            System.out.println("Unable to read from file " + JSON_STORE);
+        }
     }
 
 }

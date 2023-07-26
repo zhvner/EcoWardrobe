@@ -56,7 +56,7 @@ public class OutfitDatabase {
     }
 
     // EFFECTS: returns true if database is empty, false otherwise
-    public boolean isDatabaseEmpty() {
+    public boolean isDBEmpty() {
         return outfit.isEmpty();
     }
 
@@ -66,7 +66,7 @@ public class OutfitDatabase {
     //          (in case of tie, returns the first of the tied sources)
     public Clothing computeHighestImpactExport() throws DatabaseEmptyException {
 
-        if (isDatabaseEmpty()) {
+        if (isDBEmpty()) {
             throw new DatabaseEmptyException();
         }
         int highestIndex = 0;
@@ -87,7 +87,7 @@ public class OutfitDatabase {
     //          (in case of tie, returns the first of the tied sources)
     public Clothing computeHighestWaterFootprint() throws DatabaseEmptyException {
 
-        if (isDatabaseEmpty()) {
+        if (isDBEmpty()) {
             throw new DatabaseEmptyException();
         }
         int highestIndex = 0;

@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.Arrays;
 
 // Represents Clothing in my wardrobe with importing name, country and material used to make it.
-public class Clothing {
+public class Clothing implements Writable {
 
     private String name;
     private Country country; // exporting country -- impact rating
@@ -42,17 +45,16 @@ public class Clothing {
     }
 
 
-
+    // CITATION: modeled from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+    // EFFECTS: transforms a clothing object into a JSON object
     @Override
-    public String toString() {
-        return "Clothing{"
-                + "name='" + name + '\''
-                + ", country=" + country
-                + ", material=" + material
-                + '}';
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("country", country);
+        json.put("material", material);
+        return json;
     }
-
-
 }
 
 

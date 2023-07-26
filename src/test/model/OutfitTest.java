@@ -59,9 +59,9 @@ public class OutfitTest {
 
     @Test
     public void testIsDatabaseEmpty() {
-        assertTrue(outfitDatabase.isDatabaseEmpty());
+        assertTrue(outfitDatabase.isDBEmpty());
         today.addClothingToLog(c1);
-        assertFalse(outfitDatabase.isDatabaseEmpty());
+        assertFalse(outfitDatabase.isDBEmpty());
     }
 
 
@@ -93,7 +93,7 @@ public class OutfitTest {
 
     @Test
     public void testHighestImpactExportThrown() {
-        assertTrue(outfitDatabase.isDatabaseEmpty());
+        assertTrue(outfitDatabase.isDBEmpty());
         assertEquals(0, outfitDatabase.getOutfit().size());
 
         try {
@@ -160,7 +160,7 @@ public class OutfitTest {
 
     @Test
     public void testComputeHighestWaterFootprintThrown() {
-        assertTrue(outfitDatabase.isDatabaseEmpty());
+        assertTrue(outfitDatabase.isDBEmpty());
         try {
             outfitDatabase.computeHighestWaterFootprint();
             fail();

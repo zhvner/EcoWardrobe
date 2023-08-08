@@ -108,7 +108,7 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
 
     // MODIFIES: this
     // EFFECTS: creates header panel for today's date and water footprint
-    private void createHeaderPanel() throws DatabaseEmptyException {
+    private void createHeaderPanel() {
         JPanel headerPane = new JPanel();
         headerPane.setLayout(new FlowLayout());
 

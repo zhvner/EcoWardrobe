@@ -41,6 +41,21 @@
             "name": "tshirt"
         },
         {
+            "country": "TURKEY",
+            "material": "NYLON",
+            "name": "shirt"
+        },
+        {
+            "country": "BANGLADESH",
+            "material": "POLYESTER",
+            "name": "top"
+        },
+        {
+            "country": "SOUTH_KOREA",
+            "material": "WOOL",
+            "name": "tshirt"
+        },
+        {
             "country": "BANGLADESH",
             "material": "POLYESTER",
             "name": "top"

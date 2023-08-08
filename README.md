@@ -69,3 +69,11 @@ raising awareness about the plastic waste generated during the manufacturing pro
 
 -  As a user, I want to be able to _**save my daily clothing log entries to file**_
 -  As a user, I want to be able to _**load my daily clothing log entries from file**_
+
+Phase 3
+# Instructions for grader
+- You can generate the first required event of creating a new clothing related to adding Xs to a Y by pressing "New clothing"
+- You can generate the second required event (remove) related to adding Xs to a Y by pressing "Remove clothing"
+- You can locate my visual component by starting the program where splash screen appears and in NewClothingWindow 
+- You can save the state of my application by exiting the program
+- You can reload the state of my application by starting the program

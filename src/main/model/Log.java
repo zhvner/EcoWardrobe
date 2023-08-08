@@ -64,19 +64,20 @@ public class Log implements Writable {
         }
     }
 
-////     MODIFIES: this
-////     EFFECTS: if clothing index is in range, removes clothing and deducts water used per material, returns true
-////              returns false if index not range
-//    public Boolean removeClothingFromLog(int index) {
-//        if (!(index >= todayOutfit.size())) {
-//            double water = todayOutfit.get(index).getMaterial().getWaterFootprint();
-//            this.todayOutfit.remove(index);
-//            totalWaterFootprint -= water;
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
+    //     MODIFIES: this
+    //     EFFECTS: if clothing index is in range, removes clothing and deducts water used per material, returns true
+    //              returns false if index not range
+    public Boolean removeClothingFromLog(int index) {
+        if (index >= 0 && index < todayOutfit.size()) {
+            double waterFootprint = todayOutfit.get(index).getMaterial().getWaterFootprint();
+            this.todayOutfit.remove(index);
+            totalWaterFootprint -= waterFootprint;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     //getters
     public String getFullDate() {
@@ -118,8 +119,10 @@ public class Log implements Writable {
         return jsonArray;
     }
 
+    //     EFFECTS: returns true if today log of outfit is empty
     public boolean isTodayLogEmpty() {
         return todayOutfit.isEmpty();
     }
+
 
 }

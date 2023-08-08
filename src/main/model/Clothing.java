@@ -1,9 +1,8 @@
 package model;
 
+import exceptions.InvalidInputException;
 import org.json.JSONObject;
 import persistence.Writable;
-
-import java.util.Arrays;
 
 // Represents Clothing in my wardrobe with importing name, country and material used to make it.
 public class Clothing implements Writable {
@@ -13,7 +12,10 @@ public class Clothing implements Writable {
     private Material material; // material using chemicals -- display chemicals used
 
     // EFFECTS: constructs clothing with name, exported/producing country and material
-    public Clothing(String name, Country countries, Material materials) {
+    public Clothing(String name, Country countries, Material materials) throws InvalidInputException {
+        if (name.isEmpty() || materials.equals(null) || countries.equals(null)) {
+            throw new InvalidInputException();
+        }
         this.name = name;
         this.country = countries;
         this.material = materials;

@@ -22,7 +22,9 @@ public class JsonReaderTest extends JsonTest {
         try {
             Log log = reader.read();
             fail("IOException expected");
-        } catch (IOException | InvalidInputException e) {
+        } catch (IOException e) {
+            // pass
+        } catch (InvalidInputException e) {
             // pass
         }
     }

@@ -80,8 +80,8 @@ public class CarbonTrackerApp {
                 + "                   \u001B[7mq \u001B[0m Quit");
         System.out.println(""
                 + "\u001B[7mv \u001B[0m View Outfit Log                \u001B[7mn \u001B[0m New Cloting    "
-                +                "                   \u001B[7ma \u001B[0m Add from Wardrobe"
-                + "                 \u001B[7md\u001B[0m Delete Clothing ");
+                +                "  "
+                + "                 \u001B[7md \u001B[0m Delete Clothing ");
         System.out.println(""
                 + "\u001B[7mx \u001B[0m High export impact clothing    \u001B[7mwf\u001B[0m High water footprint"
                 + "              \u001B[7mw \u001B[0m View Total Water used per outfit");
@@ -125,7 +125,12 @@ public class CarbonTrackerApp {
         Material material = getMaterial();
         Country producer = getProducer();
 
-        Clothing clothing = new Clothing(name, producer, material);
+        Clothing clothing = null;
+        try {
+            clothing = new Clothing(name, producer, material);
+        } catch (InvalidInputException e) {
+            System.out.println("Invalid input");
+        }
 
         today.addClothingToLog(clothing);
 

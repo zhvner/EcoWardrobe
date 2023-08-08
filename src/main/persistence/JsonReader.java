@@ -72,7 +72,12 @@ public class JsonReader {
         Country country = Country.valueOf(jsonObject.getString("country"));
         Material material = Material.valueOf(jsonObject.getString("material"));
 
-        Clothing clothing = new Clothing(name, country, material);
+        Clothing clothing = null;
+        try {
+            clothing = new Clothing(name, country, material);
+        } catch (InvalidInputException e) {
+            System.out.println("Invalid input");
+        }
         todayLog.addClothingToLog(clothing);
     }
 

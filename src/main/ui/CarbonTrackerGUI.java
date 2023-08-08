@@ -202,28 +202,8 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
         }
     }
 
-    // EFFECTS: switches with info pane while maintaining selected tab.
-    // MODIFIES: this
-    private void switchInfoPanel() {
-        setInfoLabel();
-        int maintainTabIndex = rightPane.getSelectedIndex();
-        rightPane.remove(0);
-        rightPane.add(infoPanel, 0);
-        rightPane.setTitleAt(0, "Basic Info");
-        rightPane.setSelectedIndex(maintainTabIndex);
-    }
 
-    // EFFECTS: sets info label text
-    // MODIFIES: this
-    private void setInfoLabel() {
-        String info = "<html><pre>Name: " + getSelectedClothing() + "\n\nCountry: "
-                + getSelectedClothing().getCountry();
 
-        info += "\n\nMaterial:" + getSelectedClothing().getMaterial();
-
-        info += "</pre></html>";
-        infoLabel.setText(info);
-    }
 
 
     // MODIFIES: this
@@ -235,7 +215,7 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
         // Info Panel
         infoPanel = new JPanel();
         infoLabel = new JLabel();
-        infoLabel.setPreferredSize(new Dimension(300, 350));
+        infoLabel.setPreferredSize(new Dimension(10, 350));
         infoLabel.setVerticalAlignment(SwingConstants.TOP);
         infoPanel.add(infoLabel);
         // Insight Panel
@@ -243,6 +223,7 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
         insightLabel = new JLabel();
         insightLabel.setText("Coming soon!");
         insightPanel.add(insightLabel);
+        insightPanel.add(infoLabel);
 
         // Add Tabs
         //rightPane.add("Basic Info", infoPanel);
@@ -253,12 +234,39 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
         add(rightPane, BorderLayout.CENTER);
     }
 
+    // EFFECTS: switches with info pane while maintaining selected tab.
+    // MODIFIES: this
+    private void switchInfoPanel() {
+        setInfoLabel();
+        int maintainTabIndex = rightPane.getSelectedIndex();
+        rightPane.remove(0);
+        rightPane.add(infoPanel, 0);
+        rightPane.setTitleAt(0, "Basic Info");
+        rightPane.setSelectedIndex(maintainTabIndex);
+    }
+
+
+    // EFFECTS: sets info label text
+    // MODIFIES: this
+    private void setInfoLabel() {
+        String info = "<html><pre>Name: " + getSelectedClothing().getName() + "\n\nCountry: "
+                + getSelectedClothing().getCountry();
+
+        info += "\n\nMaterial:" + getSelectedClothing().getMaterial();
+
+        info += "</pre></html>";
+        infoLabel.setText(info);
+    }
+
     // right pane handlers
 
     // EFFECTS: get selected clothing in Jlist
     private Clothing getSelectedClothing() {
+        int index = wardList.getSelectedIndex();
+        if (index >= 0) {
+            return wardList.getModel().getElementAt(index);
+        }
         return null;
-        //return outfitModel.get(wardList.getSelectedIndex());
     }
 
 
@@ -403,7 +411,7 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
                 String name = clothing.getName();
                 Country country = clothing.getCountry();
                 Material material = clothing.getMaterial();
-                clothStringList[pos] = String.format("%s  -  %d material", name);
+                clothStringList[pos] = String.format("%s  -  %s ", name, material);
                 pos++;
             }
 

@@ -70,10 +70,23 @@ raising awareness about the plastic waste generated during the manufacturing pro
 -  As a user, I want to be able to _**save my daily clothing log entries to file**_
 -  As a user, I want to be able to _**load my daily clothing log entries from file**_
 
-Phase 3
-# Instructions for grader
+# Phase 3
+## Instructions for grader
 - You can generate the first required event of creating a new clothing related to adding Xs to a Y by pressing "New clothing"
 - You can generate the second required event (remove) related to adding Xs to a Y by pressing "Remove clothing"
 - You can locate my visual component by starting the program where splash screen appears and in NewClothingWindow 
 - You can save the state of my application by exiting the program
 - You can reload the state of my application by starting the program
+
+# Phase 4: Task 2
+At the end of the session, the console will print out the following
+
+- when pressing "New clothing" and logging new clothing item it shows: 
+  Wed Aug 09 16:50:30 PDT 2023
+  New clothing added: skirt
+- when pressing "Remove clothing" when item in the list is selected the console :
+  Wed Aug 09 16:51:19 PDT 2023
+  Is clothing removed: true
+- when pressing "Add clothing" and selecting from the database clothing:
+  Wed Aug 09 16:52:28 PDT 2023
+  Existing clothing added: top

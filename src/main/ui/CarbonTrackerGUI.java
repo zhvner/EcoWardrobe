@@ -2,10 +2,7 @@ package ui;
 
 import exceptions.DatabaseEmptyException;
 import exceptions.InvalidInputException;
-import model.Clothing;
-import model.Country;
-import model.Log;
-import model.Material;
+import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -13,6 +10,9 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import model.Event;
+import model.EventLog;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -145,7 +145,7 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
         wardList = new JList(outfitModel);
         wardList.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 
-        initializeButtonsLeftPane();
+        initializeButtonsLeftPane(); 
 
         // wardList.addListSelectionListener(e -> onWardSelectionChange(e));
         wardList.setFixedCellWidth(300);
@@ -212,24 +212,18 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
         JPanel main = new JPanel(new GridLayout(1, 2));
         rightPane = new JTabbedPane();
         rightPane.setForeground(Color.black);
-        // Info Panel
         infoPanel = new JPanel();
         infoLabel = new JLabel();
         infoLabel.setPreferredSize(new Dimension(10, 350));
         infoLabel.setVerticalAlignment(SwingConstants.TOP);
         infoPanel.add(infoLabel);
-        // Insight Panel
         insightPanel = new JPanel();
         insightLabel = new JLabel();
         insightLabel.setText("Coming soon!");
         insightPanel.add(insightLabel);
         insightPanel.add(infoLabel);
 
-        // Add Tabs
-        //rightPane.add("Basic Info", infoPanel);
-        //setInfoLabel();
         rightPane.add("Insight", insightPanel);
-        // Add Pane
         main.add(rightPane);
         add(rightPane, BorderLayout.CENTER);
     }
@@ -285,7 +279,6 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
         this.setJMenuBar(menuBar);
     }
 
-    // menu bar handlers
 
     // CITATION: this method has been remodeled from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // MODIFIES: this
@@ -310,9 +303,7 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
         outfitModel.clear();
         List<Clothing> clothingLog = todayLog.getTodayOutfit();
         for (Clothing clothing : clothingLog) {
-            //String name = clothing.getName();
             outfitModel.addElement(clothing.getName());
-
         }
         updateWaterFootprint();
     }
@@ -340,6 +331,10 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
                         jsonWriter.open();
                         jsonWriter.write(todayLog);
                         jsonWriter.close();
+                        for (model.Event e : model.EventLog.getInstance()) {
+                            System.out.println(e);
+                        }
+                        System.exit(0);
                     } catch (FileNotFoundException e) {
                         System.out.println("Unable to write to file: " + JSON_STORE);
                     }
@@ -347,6 +342,7 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
                 }
             }
         });
+
     }
 
     //splash screen
@@ -431,6 +427,11 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
                 todayLog.addClothingToLog(clothing);
                 updateClothes();
 
+                // Log an event for the added clothing
+                EventLog eventLog = EventLog.getInstance();
+                Event newEvent = new Event("Existing clothing added: " + clothing.getName());
+                eventLog.logEvent(newEvent);
+
             }
         }
 
@@ -456,7 +457,11 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
 
                     todayLog.addClothingToLog(newClothing);
                     updateClothes();
-                    //int index = outfitModel.indexOf(newClothing);
+
+                    // Create a new event and log it
+                    EventLog eventLog = EventLog.getInstance();
+                    Event newEvent = new Event("New clothing added: " + clothingName);
+                    eventLog.logEvent(newEvent);
                 } catch (InvalidInputException e) {
                     System.out.println("Invalid input!");
                 }
@@ -469,8 +474,12 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
         private void removeClothingAction() {
             try {
                 int index = wardList.getSelectedIndex();
-                todayLog.removeClothingFromLog(index);
+                Boolean removedClothing = todayLog.removeClothingFromLog(index);
                 updateClothes();
+                // Log an event for the removed clothing
+                EventLog eventLog = EventLog.getInstance();
+                Event newEvent = new Event("Is clothing removed: " + removedClothing);
+                eventLog.logEvent(newEvent);
 
             } catch (ArrayIndexOutOfBoundsException exception) {
                 System.out.println("wrong");

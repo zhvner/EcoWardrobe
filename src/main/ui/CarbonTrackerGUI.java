@@ -134,7 +134,7 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
 
     // MODIFIES: this
     // EFFECTS: creates left panel with buttons to add, remove, new and list of clothes created
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    //@SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void addLeftPane() {
         leftPane = new JTabbedPane();
         leftPane.setForeground(Color.black);
@@ -397,23 +397,13 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
 
         // MODIFIES: this, todayLog
         // EFFECTS: creates popup window and interface for adding clothes from database
-        @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
         private void addClothingAction() {
             JPanel panel = new JPanel(new BorderLayout());
             List<Clothing> outfitDB = todayLog.getOutfitDB().getOutfit();
             String[] clothStringList = new String[outfitDB.size()];
-            int pos = 0;
-            for (Clothing clothing : outfitDB) {
-                String name = clothing.getName();
-                Country country = clothing.getCountry();
-                Material material = clothing.getMaterial();
-                clothStringList[pos] = String.format("%s  -  %s ", name, material);
-                pos++;
-            }
+            addClothingString(outfitDB, clothStringList);
 
-            Image image = imageIcon.getImage();
-            Image scaledImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-            ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+            ImageIcon scaledImageIcon = addImage();
 
             Object selectedClothing = JOptionPane.showInputDialog(panel,
                     "Select a clothing", "Add clothing from database",
@@ -432,6 +422,24 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
                 Event newEvent = new Event("Existing clothing added: " + clothing.getName());
                 eventLog.logEvent(newEvent);
 
+            }
+        }
+
+        private ImageIcon addImage() {
+            Image image = imageIcon.getImage();
+            Image scaledImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+            ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+            return scaledImageIcon;
+        }
+
+        private void addClothingString(List<Clothing> outfitDB,  String[] clothStringList) {
+
+            int pos = 0;
+            for (Clothing clothing : outfitDB) {
+                String name = clothing.getName();
+                Material material = clothing.getMaterial();
+                clothStringList[pos] = String.format("%s  -  %s ", name, material);
+                pos++;
             }
         }
 

@@ -1,42 +1,5 @@
 {
-    "Wardrobe clothes": [
-        {
-            "country": "BANGLADESH",
-            "material": "SILK",
-            "name": "skirt"
-        },
-        {
-            "country": "VIETNAM",
-            "material": "NYLON",
-            "name": "tshirt"
-        },
-        {
-            "country": "CHINA",
-            "material": "TWEED",
-            "name": "sandals"
-        },
-        {
-            "country": "CAMBODIA",
-            "material": "COTTON",
-            "name": "shirt"
-        }
-    ],
+    "Wardrobe clothes": [],
     "Today's date": "WEDNESDAY AUGUST 9",
-    "Today's outfit": [
-        {
-            "country": "BANGLADESH",
-            "material": "SILK",
-            "name": "skirt"
-        },
-        {
-            "country": "VIETNAM",
-            "material": "NYLON",
-            "name": "tshirt"
-        },
-        {
-            "country": "CHINA",
-            "material": "TWEED",
-            "name": "sandals"
-        }
-    ]
+    "Today's outfit": []
 }

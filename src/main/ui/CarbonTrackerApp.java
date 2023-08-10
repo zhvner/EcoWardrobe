@@ -156,7 +156,7 @@ public class CarbonTrackerApp {
 
     // MODIFIES: this
     // EFFECTS: returns a material selected from the provided list
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    //@SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private Material chooseMaterial(String chosenMaterial) {
         switch (chosenMaterial) {
             case "p":
@@ -173,12 +173,6 @@ public class CarbonTrackerApp {
                 break;
             case "n":
                 material = Material.NYLON;
-                break;
-            case "w":
-                material = Material.WOOL;
-                break;
-            case "t":
-                material = Material.TWEED;
                 break;
             default:
                 System.out.println("Selection is not valid...");
@@ -210,7 +204,8 @@ public class CarbonTrackerApp {
 
     // MODIFIES: this
     // EFFECTS: returns a producing country from user's input selected from the displayed list
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+
+    //@SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private Country chooseCountry(String countryMade) {
         switch (countryMade) {
             case "c":
@@ -231,18 +226,7 @@ public class CarbonTrackerApp {
             case "p":
                 producer = Country.PAKISTAN;
                 break;
-            case "cd":
-                producer = Country.CAMBODIA;
-                break;
-            case "id":
-                producer = Country.INDONESIA;
-                break;
-            case "k":
-                producer = Country.SOUTH_KOREA;
-                break;
-            case "tp":
-                producer = Country.TAIPEI;
-                break;
+
         }
         return producer;
     }

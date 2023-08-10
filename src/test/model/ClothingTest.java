@@ -1,11 +1,13 @@
 package model;
 
+import exceptions.InvalidInputException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static model.Country.*;
 import static model.Material.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ClothingTest {
 
@@ -15,9 +17,21 @@ public class ClothingTest {
 
     @BeforeEach
     public void runBefore() {
-        clothingTest1 = new Clothing("top", BANGLADESH, COTTON);
-        clothingTest2 = new Clothing("skirt", CAMBODIA, DENIM);
-        clothingTest3 = new Clothing("jacket", PAKISTAN, POLYESTER);
+        try {
+            clothingTest1 = new Clothing("top", BANGLADESH, COTTON);
+        } catch (InvalidInputException e) {
+            fail();
+        }
+        try {
+            clothingTest2 = new Clothing("skirt", CAMBODIA, DENIM);
+        } catch (InvalidInputException e) {
+            fail();
+        }
+        try {
+            clothingTest3 = new Clothing("jacket", PAKISTAN, POLYESTER);
+        } catch (InvalidInputException e) {
+            fail();
+        }
     }
 
     @Test

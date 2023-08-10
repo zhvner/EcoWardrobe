@@ -1,6 +1,7 @@
 package model;
 
 import exceptions.DatabaseEmptyException;
+import exceptions.InvalidInputException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,9 +24,21 @@ public class OutfitTest {
     public void runBefore() {
         today = new Log();
         outfitDatabase = today.getOutfitDB();
-        c1 = new Clothing("top", BANGLADESH, COTTON);
-        c2 = new Clothing("skirt", CAMBODIA, DENIM);
-        c3= new Clothing("jacket", PAKISTAN, TWEED);
+        try {
+            c1 = new Clothing("top", BANGLADESH, COTTON);
+        } catch (InvalidInputException e) {
+            fail();
+        }
+        try {
+            c2 = new Clothing("skirt", CAMBODIA, DENIM);
+        } catch (InvalidInputException e) {
+            fail();
+        }
+        try {
+            c3= new Clothing("jacket", PAKISTAN, TWEED);
+        } catch (InvalidInputException e) {
+            fail();
+        }
     }
 
     @Test

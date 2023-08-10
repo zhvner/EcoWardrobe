@@ -13,7 +13,7 @@ public class Clothing implements Writable {
 
     // EFFECTS: constructs clothing with name, exported/producing country and material
     public Clothing(String name, Country countries, Material materials) throws InvalidInputException {
-        if (name.isEmpty() || materials.equals(null) || countries.equals(null)) {
+        if (name.isEmpty() || materials == null || countries == null) {
             throw new InvalidInputException();
         }
         this.name = name;

@@ -14,6 +14,8 @@ public class ClothingTest {
     private Clothing clothingTest1;
     private Clothing clothingTest2;
     private Clothing clothingTest3;
+    private Clothing clothingTest4;
+
 
     @BeforeEach
     public void runBefore() {
@@ -27,43 +29,50 @@ public class ClothingTest {
         } catch (InvalidInputException e) {
             fail();
         }
-        try {
-            clothingTest3 = new Clothing("jacket", PAKISTAN, POLYESTER);
-        } catch (InvalidInputException e) {
-            fail();
-        }
     }
 
+
     @Test
-    public void testConstructor1(){
+    public void testConstructor1() {
         assertEquals("top", clothingTest1.getName());
         assertEquals(BANGLADESH, clothingTest1.getCountry());
         assertEquals(COTTON, clothingTest1.getMaterial());
     }
 
     @Test
-    public void testConstructor2(){
+    public void testConstructor2() {
         assertEquals("skirt", clothingTest2.getName());
         assertEquals(CAMBODIA, clothingTest2.getCountry());
         assertEquals(DENIM, clothingTest2.getMaterial());
     }
 
     @Test
-    public void testSetCountry(){
+    public void testSetCountry() {
         clothingTest1.setCountry(PAKISTAN);
         assertEquals(PAKISTAN, clothingTest1.getCountry());
     }
 
     @Test
-    public void testSetMaterial(){
+    public void testSetMaterial() {
         clothingTest1.setMaterial(NYLON);
         assertEquals(NYLON, clothingTest1.getMaterial());
     }
 
     @Test
-    public void testSetName(){
+    public void testSetName() {
         clothingTest1.setName("shirt");
         assertEquals("shirt", clothingTest1.getName());
+    }
+
+    @Test
+    public void exceptionThrownTest() {
+        try {
+            clothingTest3 = new Clothing("jacket", null, null);
+            fail();
+        } catch (InvalidInputException e) {
+            //thrown
+        }
+
     }
 
 //    @Test
@@ -71,9 +80,6 @@ public class ClothingTest {
 //        String expected = "Clothing{name='top', country=BANGLADESH, material=COTTON}";
 //        assertEquals(expected, clothingTest1.toString());
 //    }
-
-
-
 
 
 }

@@ -19,6 +19,9 @@ public class LogTest {
     Clothing c1;
     Clothing c2;
 
+    double water1;
+    double water2;
+
     List<Clothing> outfitLogged;
 
     @BeforeEach
@@ -26,11 +29,13 @@ public class LogTest {
         today = new Log();
         try {
             c1 = new Clothing("top", BANGLADESH,COTTON);
+            water1 = c1.getMaterial().getWaterFootprint();
         } catch (InvalidInputException e) {
             fail();
         }
         try {
             c2 = new Clothing("skirt", CAMBODIA,DENIM);
+            water2 = c2.getMaterial().getWaterFootprint();
         } catch (InvalidInputException e) {
             fail();
         }
@@ -137,6 +142,33 @@ public class LogTest {
         assertTrue(isDayNumberFormatCorrect(dayNum));
     }
 
+    @Test
+    public void testRemoveMealUsingIndex() {
+        today.addClothingToLog(c1);
+        today.addClothingToLog(c2);
+
+        assertEquals(water1 + water2, today.getTotalWaterFootprint());
+        assertEquals(2, outfitLogged.size());
+
+        assertTrue(today.removeClothingFromLog(1));
+        assertEquals(1, outfitLogged.size());
+        assertEquals(water1, today.getTotalWaterFootprint());
+
+        assertTrue(today.removeClothingFromLog(0));
+        assertEquals(0, outfitLogged.size());
+        assertEquals(0, today.getTotalWaterFootprint());
+    }
+
+    @Test
+    public void testRemoveMealUsingIndexFail() {
+        today.addClothingToLog(c1);
+        today.addClothingToLog(c2);
+        assertFalse(today.removeClothingFromLog(2));
+        assertEquals(water1 + water2, today.getTotalWaterFootprint());
+        assertEquals(2, outfitLogged.size());
+
+    }
+
     // REQUIRES: value passed must be a day of the week
     // EFFECTS: helper function to check if value is a valid day of the week
     public Boolean isDayFormatCorrect(String day) {
@@ -171,5 +203,7 @@ public class LogTest {
 
         return (dayNumbers.contains(dayNum));
     }
+
+
 
 }

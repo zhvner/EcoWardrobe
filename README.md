@@ -90,3 +90,12 @@ At the end of the session, the console will print out the following
 - when pressing "Add clothing" and selecting from the database clothing:
   Wed Aug 09 16:52:28 PDT 2023
   Existing clothing added: top
+
+# Phase 4: Task 3
+Reflection on the design and refactoring of the project:
+- In my view, the most advantageous enhancement for this program
+  would involve breaking down the entirety of its contents from one class into separate classes, each representing distinct GUI components.
+  This approach would enable these components to interact with one another by means of a central class,
+  facilitating bidirectional relationships among them.
+- This would lead to improved cohesion and less coupling
+- Log and OutfitDatabase could impplement an anstract class since they share similar functionalities 

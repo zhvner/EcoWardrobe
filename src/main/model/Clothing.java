@@ -13,7 +13,7 @@ public class Clothing implements Writable {
 
     // EFFECTS: constructs clothing with name, exported/producing country and material
     public Clothing(String name, Country countries, Material materials) throws InvalidInputException {
-        if (name.isEmpty() || materials == null || countries == null) {
+        if (name == null || materials == null || countries == null) {
             throw new InvalidInputException();
         }
         this.name = name;
@@ -53,8 +53,8 @@ public class Clothing implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
-        json.put("country", country);
-        json.put("material", material);
+        json.put("country", country.name());
+        json.put("material", material.name());
         return json;
     }
 }

@@ -1,6 +1,7 @@
 package model;
 
 import exceptions.InvalidInputException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -75,11 +76,48 @@ public class ClothingTest {
 
     }
 
-//    @Test
-//    void testToString() {
-//        String expected = "Clothing{name='top', country=BANGLADESH, material=COTTON}";
-//        assertEquals(expected, clothingTest1.toString());
-//    }
+    @Test
+    public void exceptionThrownTestNullName() {
+        try {
+            clothingTest3 = new Clothing(null, CAMBODIA, NYLON);
+            fail();
+        } catch (InvalidInputException e) {
+            //thrown
+        }
+    }
+
+    @Test
+    public void exceptionThrownTestNullCountry() {
+        try {
+            clothingTest3 = new Clothing("jacket", null, NYLON);
+            fail();
+        } catch (InvalidInputException e) {
+            //thrown
+        }
+    }
+
+    @Test
+    public void exceptionThrownTestNullMaterial() {
+        try {
+            clothingTest3 = new Clothing("jacket", CAMBODIA, null);
+            fail();
+        } catch (InvalidInputException e) {
+            //thrown
+        }
+    }
+
+    @Test
+    public void testToJson() {
+        // Create a Clothing object
+
+        // Convert the Clothing object to a JSON object
+        JSONObject json = clothingTest1.toJson();
+
+        // Verify the properties in the JSON object
+        assertEquals("top", json.getString("name"));
+        assertEquals("BANGLADESH", json.getString("country"));
+        assertEquals("COTTON", json.getString("material"));
+    }
 
 
 }

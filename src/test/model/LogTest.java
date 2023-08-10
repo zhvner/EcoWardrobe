@@ -143,7 +143,7 @@ public class LogTest {
     }
 
     @Test
-    public void testRemoveMealUsingIndex() {
+    public void testRemoveClothingUsingIndex() {
         today.addClothingToLog(c1);
         today.addClothingToLog(c2);
 
@@ -160,13 +160,21 @@ public class LogTest {
     }
 
     @Test
-    public void testRemoveMealUsingIndexFail() {
+    public void testRemoveClothingUsingIndexFail() {
         today.addClothingToLog(c1);
         today.addClothingToLog(c2);
         assertFalse(today.removeClothingFromLog(2));
         assertEquals(water1 + water2, today.getTotalWaterFootprint());
         assertEquals(2, outfitLogged.size());
+    }
 
+    @Test
+    public void testRemoveClothingUsingIndexFailNegIndex() {
+        today.addClothingToLog(c1);
+        today.addClothingToLog(c2);
+        assertFalse(today.removeClothingFromLog(-1));
+        assertEquals(water1 + water2, today.getTotalWaterFootprint());
+        assertEquals(2, outfitLogged.size());
     }
 
     // REQUIRES: value passed must be a day of the week

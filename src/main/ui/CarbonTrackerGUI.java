@@ -134,7 +134,6 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
 
     // MODIFIES: this
     // EFFECTS: creates left panel with buttons to add, remove, new and list of clothes created
-    //@SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void addLeftPane() {
         leftPane = new JTabbedPane();
         leftPane.setForeground(Color.black);

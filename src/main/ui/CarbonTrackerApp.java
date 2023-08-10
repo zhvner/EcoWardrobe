@@ -156,7 +156,6 @@ public class CarbonTrackerApp {
 
     // MODIFIES: this
     // EFFECTS: returns a material selected from the provided list
-    //@SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private Material chooseMaterial(String chosenMaterial) {
         switch (chosenMaterial) {
             case "p":
@@ -205,7 +204,6 @@ public class CarbonTrackerApp {
     // MODIFIES: this
     // EFFECTS: returns a producing country from user's input selected from the displayed list
 
-    //@SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private Country chooseCountry(String countryMade) {
         switch (countryMade) {
             case "c":

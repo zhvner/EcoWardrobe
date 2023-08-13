@@ -1,5 +1,32 @@
 {
-    "Wardrobe clothes": [],
-    "Today's date": "WEDNESDAY AUGUST 9",
-    "Today's outfit": []
+    "Wardrobe clothes": [
+        {
+            "country": "CAMBODIA",
+            "material": "DENIM",
+            "name": "skirt"
+        },
+        {
+            "country": "BANGLADESH",
+            "material": "COTTON",
+            "name": "top-white"
+        },
+        {
+            "country": "TURKEY",
+            "material": "NYLON",
+            "name": "sandals"
+        }
+    ],
+    "Today's date": "THURSDAY AUGUST 10",
+    "Today's outfit": [
+        {
+            "country": "CAMBODIA",
+            "material": "DENIM",
+            "name": "skirt"
+        },
+        {
+            "country": "BANGLADESH",
+            "material": "COTTON",
+            "name": "top-white"
+        }
+    ]
 }

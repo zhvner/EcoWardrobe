@@ -72,10 +72,12 @@ public class Log implements Writable {
             double waterFootprint = todayOutfit.get(index).getMaterial().getWaterFootprint();
             this.todayOutfit.remove(index);
             totalWaterFootprint -= waterFootprint;
+
             return true;
         } else {
             return false;
         }
+
     }
 
 

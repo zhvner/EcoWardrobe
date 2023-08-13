@@ -484,9 +484,7 @@ public class CarbonTrackerGUI extends JFrame implements ListSelectionListener {
                 Boolean removedClothing = todayLog.removeClothingFromLog(index);
                 updateClothes();
                 // Log an event for the removed clothing
-                EventLog eventLog = EventLog.getInstance();
-                Event newEvent = new Event("Is clothing removed: " + removedClothing);
-                eventLog.logEvent(newEvent);
+
 
             } catch (ArrayIndexOutOfBoundsException exception) {
                 System.out.println("wrong");

@@ -1,5 +1,5 @@
 
-# My Personal Project for CPSC 210
+# Sustainable Outfit Tracker for CPSC 210
 
 ## Outfit Carbon Tracker 
 
@@ -99,3 +99,11 @@ Reflection on the design and refactoring of the project:
   facilitating bidirectional relationships among them.
 - This would lead to improved cohesion and less coupling
 - Log and OutfitDatabase could impplement an anstract class since they share similar functionalities 
+
+# References: 
+- https://github.students.cs.ubc.ca/CPSC210/TellerApp.git - Teller App
+- https://www.baeldung.com/java-json - JSON in Java
+- https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git - JsonSerialization Demo
+- https://www.javatpoint.com/java-jtabbedpane - JTabbed Pane
+- https://github.students.cs.ubc.ca/CPSC210/AlarmSystem.git - Alarm System
+- 

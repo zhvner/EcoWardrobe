@@ -98,7 +98,14 @@ Reflection on the design and refactoring of the project:
   This approach would enable these components to interact with one another by means of a central class,
   facilitating bidirectional relationships among them.
 - This would lead to improved cohesion and less coupling
-- Log and OutfitDatabase could impplement an anstract class since they share similar functionalities 
+- Log and OutfitDatabase could impplement an anstract class since they share similar functionalities
+- 
+# Demonstration 
+
+https://github.com/zhvner/Outfit-Sustainability-Tracker/assets/85496297/5493633c-8bbc-401f-93a6-1d8fb9529f2b
+
+
+
 
 # References: 
 - https://github.students.cs.ubc.ca/CPSC210/TellerApp.git - Teller App
